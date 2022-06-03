@@ -16,8 +16,10 @@
 <script>
 
 function change(word){
+    
+    $('#ans').empty();
+
     let ans=[];
-    let resultword ="";
     let words;
 
     ans2 = word.split(',');
@@ -27,14 +29,22 @@ function change(word){
         ans = ans2[i].split('_');
         
         let num = ans.length;
-
+        var resultword ="";
+        
         for(let i=0; i<num; i++){
             let words = capitalizeFirstLetter(ans[i]);
             resultword += words;
+
         }
+	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
+	        rowItem += '<label for="'+i+'">';
+	        rowItem += resultword;
+	        rowItem += '</label></div>';
+            
+	    $('#ans').append(rowItem);
     }
 
-    $("#ans").text(resultword.trim());
+    //$("#ans").text(resultword);
 }
 
 function capitalizeFirstLetter(word){
@@ -45,9 +55,13 @@ function capitalizeFirstLetter(word){
 <style>
     #ans{
         margin-top: 30px;
+        width: 80%;
     }
     textarea{
         width: 80%;
         height: 300px;
+    }
+    .divBox{
+        margin-bottom: 3px;
     }
 </style>
