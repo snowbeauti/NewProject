@@ -20,16 +20,21 @@ function change(word){
     let resultword ="";
     let words;
 
-    ans = word.split("_");
+    ans2 = word.split(',');
     
-    let num = ans.length;
+    let num2 = ans2.length;
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
 
-    for(let i=0; i<num; i++){
-        let words = capitalizeFirstLetter(ans[i]);
-        resultword += words;
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+        }
     }
+
     $("#ans").text(resultword.trim());
-console.log(resultword.trim());
 }
 
 function capitalizeFirstLetter(word){
