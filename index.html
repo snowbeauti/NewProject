@@ -151,6 +151,7 @@ function change(word){
 }
 
 function capitalizeFirstLetter(word){
+    console.log(word.charAt(0).toUpperCase());
     let result = word.charAt(0).toUpperCase()+word.slice(1).toLowerCase();
     return result; 
 }
@@ -238,7 +239,6 @@ function insert_click(){
 
 }
 
-
 function update_click(){
     let word = $("#textareaBox").val();
 
@@ -252,21 +252,25 @@ function update_click(){
     let num2 = ans2.length;
 
     for(let a=0; a<num2; a++){
+            console.log("ans2",ans2[a]);
         
-        let num = ans.length;
-        var resultword ="";
-
-        resultword += ans2[a];
-        ans = ans2[a].split('_');
+            var resultword ="";
+            
+            resultword += ans2[a];
+            ans = ans2[a].split('_');
+            let num = ans.length;
+            
+        console.log("ans1",ans);
         console.log("1",resultword);
+
         for(let i=0; i<num; i++){
+            console.log("ans",ans[i]);
             if(i == 0) resultword += " = #{";
             let words = capitalizeFirstLetter(ans[i]);
-            console.log("words",ans[i]);
             resultword += words;
-            if(i == num-1) resultword += " = #{";
         console.log("2",resultword);
         }
+
         resultword += "}";
 
         console.log("3",resultword);
