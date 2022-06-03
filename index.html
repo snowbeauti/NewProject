@@ -13,6 +13,7 @@
     <div class="container">
         <button onclick="button2_click();" class="btn btn4" id="normal">normal</button>
         <button onclick="button1_click();" class="btn btn2" id="private">private</button>
+        <button onclick="button3_click();" class="btn btn3" id="private">public</button>
     </div>
     <div id="ans"></div>
 </body>
@@ -77,6 +78,38 @@ function button2_click(){
 	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
 	        rowItem += '<label for="'+i+'">';
 	        rowItem += resultword;
+	        rowItem += '</label></div>';
+            
+	    $('#ans').append(rowItem);
+    }
+}
+
+function button3_click(){     
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+    let word = $("#textareaBox").val();
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
+        var resultword ="";
+        
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+
+        }
+	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
+	        rowItem += '<label for="'+i+'">';
+	        rowItem += "public String ";
+	        rowItem += resultword;
+	        rowItem += '= "";';
 	        rowItem += '</label></div>';
             
 	    $('#ans').append(rowItem);
@@ -153,5 +186,8 @@ function capitalizeFirstLetter(word){
     }
     .btn2 {
     background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+    }
+    .btn3 {
+    background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
     }
 </style>
