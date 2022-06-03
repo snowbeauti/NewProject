@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea onkeyup="change(this.value)"></textarea>
+    <div id="ans"></div>
+</body>
+</html>
+
+<script>
+
+function change(word){
+    let ans=[];
+    let resultword ="";
+    let words;
+
+    ans = word.split("_");
+    
+    let num = ans.length;
+
+    for(let i=0; i<num; i++){
+        let words = capitalizeFirstLetter(ans[i]);
+        resultword += words;
+    }
+    $("#ans").text(resultword.trim());
+console.log(resultword.trim());
+}
+
+function capitalizeFirstLetter(word){
+    let result = word.charAt(0).toUpperCase()+word.slice(1).toLowerCase();
+    return result; 
+}
+</script>
+<style>
+    #ans{
+        margin-top: 30px;
+    }
+    textarea{
+        width: 80%;
+        height: 300px;
+    }
+</style>
