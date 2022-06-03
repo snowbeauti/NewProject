@@ -8,12 +8,84 @@
     <title>Document</title>
 </head>
 <body>
-    <textarea onkeyup="change(this.value)"></textarea>
+    <textarea onkeyup="change(this.value)" id="textareaBox"></textarea>
+    <br>
+    <button onclick="button1_click();" id="private">private</button>
+    <button onclick="button2_click();" style="display: none;" id="normal">normal</button>
     <div id="ans"></div>
 </body>
 </html>
 
 <script>
+function button1_click(){
+    $('#private').css( "display", "none" );
+    $('#normal').css( "display", "" );
+
+    let word = $("#textareaBox").val();
+
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
+        var resultword ="";
+        
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+
+        }
+	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
+	        rowItem += '<label for="'+i+'">';
+	        rowItem += "private String ";
+	        rowItem += resultword;
+	        rowItem += '= "";';
+	        rowItem += '</label></div>';
+            
+	    $('#ans').append(rowItem);
+    }
+
+}
+
+function button2_click(){
+    $('#private').css( "display", "" );
+    $('#normal').css( "display", "none" );
+     
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+    let word = $("#textareaBox").val();
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
+        var resultword ="";
+        
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+
+        }
+	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
+	        rowItem += '<label for="'+i+'">';
+	        rowItem += resultword;
+	        rowItem += '</label></div>';
+            
+	    $('#ans').append(rowItem);
+    }
+}
 
 function change(word){
     
@@ -44,7 +116,6 @@ function change(word){
 	    $('#ans').append(rowItem);
     }
 
-    //$("#ans").text(resultword);
 }
 
 function capitalizeFirstLetter(word){
