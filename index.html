@@ -10,17 +10,16 @@
 <body>
     <textarea onkeyup="change(this.value)" id="textareaBox"></textarea>
     <br>
-    <button onclick="button1_click();" id="private">private</button>
-    <button onclick="button2_click();" style="display: none;" id="normal">normal</button>
+    <div class="container">
+        <button onclick="button2_click();" class="btn btn4" id="normal">normal</button>
+        <button onclick="button1_click();" class="btn btn2" id="private">private</button>
+    </div>
     <div id="ans"></div>
 </body>
 </html>
 
 <script>
 function button1_click(){
-    $('#private').css( "display", "none" );
-    $('#normal').css( "display", "" );
-
     let word = $("#textareaBox").val();
 
     $('#ans').empty();
@@ -54,10 +53,7 @@ function button1_click(){
 
 }
 
-function button2_click(){
-    $('#private').css( "display", "" );
-    $('#normal').css( "display", "none" );
-     
+function button2_click(){     
     $('#ans').empty();
 
     let ans=[];
@@ -134,5 +130,28 @@ function capitalizeFirstLetter(word){
     }
     .divBox{
         margin-bottom: 3px;
+    }
+ 
+    .btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 20px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    border: none;
+    }
+    .btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    }
+    .btn4 {
+    background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+    }
+    .btn2 {
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
     }
 </style>
