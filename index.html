@@ -14,6 +14,9 @@
         <button onclick="button2_click();" class="btn btn4" id="normal">normal</button>
         <button onclick="button1_click();" class="btn btn2" id="private">private</button>
         <button onclick="button3_click();" class="btn btn3" id="public">public</button>
+        <button onclick="select_click();" class="btn-hover color-2" id="select">select</button>  
+        <button onclick="insert_click();" class="btn-hover color-3" id="insert">insert</button>  
+        <button onclick="update_click();" class="btn-hover color-1" id="update">update</button>       
     </div>
     <div id="ans"></div>
 </body>
@@ -151,6 +154,137 @@ function capitalizeFirstLetter(word){
     let result = word.charAt(0).toUpperCase()+word.slice(1).toLowerCase();
     return result; 
 }
+
+
+function select_click(){
+    let word = $("#textareaBox").val();
+
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
+        var resultword ="";
+        if(i == 0) resultword += "select ";
+        
+        if(i != 0) resultword += ", ";
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+        }
+	    var rowItem = '<div class="divBox">';
+            rowItem += resultword;
+            rowItem += '</div>';
+            if(i == Number(num2-1)) rowItem += '<div class="divBox">from </div>';
+           
+        $('#ans').append(rowItem);
+    }
+
+}
+
+function insert_click(){
+    let word = $("#textareaBox").val();
+
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+    for(let a=0; a<num2; a++){
+        var resultword ="";
+        if(a == 0) resultword += '<div class="divBox">insert into</div><div class="divBox">테이블이름 (</div>';
+        if(a != 0) resultword += ", ";
+
+            let words = ans2[a];
+            resultword += words;
+
+	         var rowItem = '<div class="divBox">';
+            rowItem += resultword;
+            rowItem += '</div>';
+            if(a == Number(num2-1)) rowItem += '<div class="divBox">)</div><div class="divBox">values(</div>';
+           
+        $('#ans').append(rowItem);
+    }
+
+    for(let i=0; i<num2; i++){
+        ans = ans2[i].split('_');
+        
+        let num = ans.length;
+        var resultword ="";
+        if(i != 0) resultword += ", ";
+        resultword += "#{";
+        for(let i=0; i<num; i++){
+            let words = capitalizeFirstLetter(ans[i]);
+            resultword += words;
+        }
+        resultword += "}";
+	    var rowItem = '<div class="divBox">';
+            rowItem += resultword;
+            rowItem += '</div>';
+            if(i == Number(num2-1)) rowItem += '<div class="divBox">)</div>';
+           
+        $('#ans').append(rowItem);
+    }
+
+}
+
+
+function update_click(){
+    let word = $("#textareaBox").val();
+
+    $('#ans').empty();
+
+    let ans=[];
+    let words;
+
+    ans2 = word.split(',');
+    
+    let num2 = ans2.length;
+
+    for(let a=0; a<num2; a++){
+        
+        let num = ans.length;
+        var resultword ="";
+
+        resultword += ans2[a];
+        ans = ans2[a].split('_');
+        console.log("1",resultword);
+        for(let i=0; i<num; i++){
+            if(i == 0) resultword += " = #{";
+            let words = capitalizeFirstLetter(ans[i]);
+            console.log("words",ans[i]);
+            resultword += words;
+            if(i == num-1) resultword += " = #{";
+        console.log("2",resultword);
+        }
+        resultword += "}";
+
+        console.log("3",resultword);
+	    var rowItem = '<div class="divBox">';
+            if(a == 0) rowItem += 'update</div><div class="divBox">테이블이름</div><div class="divBox">set</div><div class="divBox">';
+            if(a != 0) rowItem += ", ";
+            rowItem += resultword;
+            rowItem += '</div>';
+        console.log("rowItem",rowItem);
+            if(a == Number(num2-1)) rowItem += '<div class="divBox">where</div><div class="divBox">id = #{id}</div>';
+           
+        $('#ans').append(rowItem);
+    }
+
+}
+
+
+
 </script>
 <style>
     #ans{
@@ -190,4 +324,58 @@ function capitalizeFirstLetter(word){
     .btn3 {
     background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
     }
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+.btn-hover {
+    width: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+.btn-hover.color-2 {
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+.btn-hover.color-3 {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
 </style>
