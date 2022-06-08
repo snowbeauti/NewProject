@@ -176,10 +176,11 @@ function select_click(){
         if(i == 0) resultword += "select ";
         
         if(i != 0) resultword += ", ";
-        for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
+        
+        
+        let words = ans2[i];
             resultword += words;
-        }
+
 	    var rowItem = '<div class="divBox">';
             rowItem += resultword;
             rowItem += '</div>';
