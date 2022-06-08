@@ -41,8 +41,14 @@ function button1_click(){
         var resultword ="";
         
         for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
+            let words ="";
+            if(i==0){
+                words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else {
+                words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
 
         }
 	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
@@ -74,9 +80,13 @@ function button2_click(){
         var resultword ="";
         
         for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
-
+            if(i==0){
+                let words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else{
+                let words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
         }
 	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
 	        rowItem += '<label for="'+i+'">';
@@ -104,8 +114,13 @@ function button3_click(){
         var resultword ="";
         
         for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
+            if(i==0){
+                let words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else{
+                let words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
 
         }
 	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
@@ -136,8 +151,13 @@ function change(word){
         var resultword ="";
         
         for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
+            if(i==0){
+                let words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else{
+                let words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
 
         }
 	    var rowItem = '<div class="divBox"><input type="checkbox" id="'+i+'" name="'+i+'">';
@@ -150,8 +170,13 @@ function change(word){
 
 }
 
+function capitalizeRealFirstLetter(word){
+    let result = word.toLowerCase();
+    return result; 
+}
+
+
 function capitalizeFirstLetter(word){
-    console.log(word.charAt(0).toUpperCase());
     let result = word.charAt(0).toUpperCase()+word.slice(1).toLowerCase();
     return result; 
 }
@@ -184,7 +209,7 @@ function select_click(){
 	    var rowItem = '<div class="divBox">';
             rowItem += resultword;
             rowItem += '</div>';
-            if(i == Number(num2-1)) rowItem += '<div class="divBox">from </div>';
+            if(i == Number(num2-1)) rowItem += '<div class="divBox">from 테이블이름</div>';
            
         $('#ans').append(rowItem);
     }
@@ -226,8 +251,13 @@ function insert_click(){
         if(i != 0) resultword += ", ";
         resultword += "#{";
         for(let i=0; i<num; i++){
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
+            if(i==0){
+                let words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else{
+                let words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
         }
         resultword += "}";
 	    var rowItem = '<div class="divBox">';
@@ -253,7 +283,6 @@ function update_click(){
     let num2 = ans2.length;
 
     for(let a=0; a<num2; a++){
-            console.log("ans2",ans2[a]);
         
             var resultword ="";
             
@@ -261,26 +290,25 @@ function update_click(){
             ans = ans2[a].split('_');
             let num = ans.length;
             
-        console.log("ans1",ans);
-        console.log("1",resultword);
 
         for(let i=0; i<num; i++){
-            console.log("ans",ans[i]);
             if(i == 0) resultword += " = #{";
-            let words = capitalizeFirstLetter(ans[i]);
-            resultword += words;
-        console.log("2",resultword);
+            if(i==0){
+                let words = capitalizeRealFirstLetter(ans[i]);
+                resultword += words;
+            } else{
+                let words = capitalizeFirstLetter(ans[i]);
+                resultword += words;
+            }
         }
 
         resultword += "}";
 
-        console.log("3",resultword);
 	    var rowItem = '<div class="divBox">';
             if(a == 0) rowItem += 'update</div><div class="divBox">테이블이름</div><div class="divBox">set</div><div class="divBox">';
             if(a != 0) rowItem += ", ";
             rowItem += resultword;
             rowItem += '</div>';
-        console.log("rowItem",rowItem);
             if(a == Number(num2-1)) rowItem += '<div class="divBox">where</div><div class="divBox">id = #{id}</div>';
            
         $('#ans').append(rowItem);
